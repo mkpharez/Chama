@@ -15,23 +15,23 @@
         android:gravity="start|top"
         android:hint="last name"
         android:inputType="textPersonName"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/first_name"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/first_name"
         app:layout_constraintTop_toTopOf="@+id/first_name" />
 
     <EditText
         android:id="@+id/first_name"
         android:layout_width="130dp"
         android:layout_height="46dp"
-        android:layout_marginStart="4dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="2dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="first name"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/last_name"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/icon_person"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <EditText
@@ -42,8 +42,9 @@
         android:ems="10"
         android:hint="phone: (+254)700123456"
         android:inputType="phone"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/email_address"
-        app:layout_constraintStart_toStartOf="@+id/email_address"
+        app:layout_constraintStart_toEndOf="@+id/icon_phone_number"
         app:layout_constraintTop_toBottomOf="@+id/email_address" />
 
     <EditText
@@ -54,8 +55,8 @@
         android:ems="10"
         android:hint="National ID/Passport no."
         android:inputType="phone"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/last_name"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/first_name"
         app:layout_constraintTop_toBottomOf="@+id/first_name" />
 
@@ -67,6 +68,7 @@
         android:ems="10"
         android:hint="xyz123@gmail.com"
         android:inputType="textEmailAddress"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/id_number"
         app:layout_constraintStart_toStartOf="@+id/id_number"
         app:layout_constraintTop_toBottomOf="@+id/id_number" />
@@ -79,9 +81,11 @@
         android:ems="10"
         android:hint="new password"
         android:inputType="textPassword"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/phone_number"
-        app:layout_constraintStart_toStartOf="@+id/phone_number"
-        app:layout_constraintTop_toBottomOf="@+id/phone_number" />
+        app:layout_constraintStart_toEndOf="@+id/icon_password"
+        app:layout_constraintTop_toBottomOf="@+id/phone_number"
+        app:passwordToggleEnabled="true" />
 
     <EditText
         android:id="@+id/rewrite_password"
@@ -91,9 +95,11 @@
         android:ems="10"
         android:hint="confirm password"
         android:inputType="textPassword"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/new_password"
         app:layout_constraintStart_toStartOf="@+id/new_password"
-        app:layout_constraintTop_toBottomOf="@+id/new_password" />
+        app:layout_constraintTop_toBottomOf="@+id/new_password"
+        app:passwordToggleEnabled="true" />
 
     <Button
         android:id="@+id/button_register"
@@ -101,7 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:backgroundTint="@android:color/holo_blue_bright"
+        android:background="@android:color/holo_blue_bright"
         android:text="Register"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/rewrite_password"
@@ -115,6 +121,7 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/design_default_color_primary_dark"
         android:text="LogIn ?"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/button_register"
         app:layout_constraintStart_toStartOf="@+id/rewrite_password"
@@ -125,7 +132,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/phone_number"
-        app:layout_constraintEnd_toStartOf="@+id/phone_number"
+        app:layout_constraintStart_toStartOf="@+id/icon_email"
         app:layout_constraintTop_toTopOf="@+id/phone_number"
         app:srcCompat="@android:drawable/ic_menu_call"
         app:tint="@android:color/holo_blue_bright" />
@@ -135,7 +142,7 @@
         android:layout_width="29dp"
         android:layout_height="28dp"
         app:layout_constraintBottom_toBottomOf="@+id/new_password"
-        app:layout_constraintEnd_toStartOf="@+id/new_password"
+        app:layout_constraintStart_toStartOf="@+id/icon_phone_number"
         app:layout_constraintTop_toTopOf="@+id/new_password"
         app:srcCompat="@android:drawable/ic_lock_idle_lock"
         app:tint="@android:color/holo_blue_bright" />
@@ -144,18 +151,21 @@
         android:id="@+id/icon_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
         app:layout_constraintBottom_toBottomOf="@+id/email_address"
         app:layout_constraintEnd_toStartOf="@+id/email_address"
+        app:layout_constraintStart_toStartOf="@+id/icon_person"
         app:layout_constraintTop_toTopOf="@+id/email_address"
-        app:srcCompat="@android:drawable/ic_dialog_email"
+        app:srcCompat="@android:drawable/sym_action_email"
         app:tint="@android:color/holo_blue_bright" />
 
     <ImageView
         android:id="@+id/icon_person"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/first_name"
-        app:layout_constraintEnd_toStartOf="@+id/first_name"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/first_name"
         app:srcCompat="@drawable/ic_baseline_person_24"
         app:tint="@android:color/holo_blue_bright" />
@@ -175,7 +185,6 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:background="@android:color/holo_blue_bright"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"

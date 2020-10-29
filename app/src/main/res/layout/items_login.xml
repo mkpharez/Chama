@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="#FFFFFF"
-    tools:context=".Login">
+    app:passwordToggleEnabled="true"
+    tools:context=".LogInActivity">
 
     <EditText
         android:id="@+id/user_name"
@@ -17,7 +18,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Username or Phone"
-        android:inputType="textMultiLine"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/enter_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -41,7 +42,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Enter Password"
-        android:inputType="textMultiLine"
+        android:inputType="textPassword"
+        app:passwordToggleEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/log_in_button"
         app:layout_constraintEnd_toEndOf="@+id/user_name"
         app:layout_constraintStart_toStartOf="@+id/user_name" />
@@ -53,6 +55,7 @@
         android:layout_marginBottom="200dp"
         android:backgroundTint="@android:color/holo_blue_bright"
         android:text="Log In"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/enter_password"
         app:layout_constraintStart_toStartOf="@+id/enter_password" />
@@ -88,6 +91,7 @@
         android:backgroundTint="@color/design_default_color_primary_dark"
         android:clickable="true"
         android:text="Forgot Password ?"
+        android:textColor="@color/black"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@+id/log_in_button"
         app:layout_constraintStart_toStartOf="@+id/log_in_button"
@@ -97,7 +101,7 @@
         android:id="@+id/toolbar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@android:color/holo_blue_bright"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
