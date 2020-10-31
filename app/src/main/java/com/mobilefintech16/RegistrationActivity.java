@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,16 +28,20 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     private CheckedTextView mBackToLogin;
     private Button mRegisterAccount;
-    DatabaseReference mDatabaseReference;
     private EditText mFirstName;
     private EditText mLastName;
     private EditText mEmailAccount;
     private EditText mNewPassword;
     private EditText mConfirmPassword;
-    private ProgressBar mProgressBar;
     private EditText mPhoneNumber;
     private EditText mIdNumber;
+    private static final String REGISTEREDMEMBER = "registeredMember";
+    private static final String TAG = "RegistrationActivity";
+    DatabaseReference mDatabaseReference;
     private FirebaseAuth mAuth;
+    private ProgressBar mProgressBar;
+    private FirebaseDatabase mDatabase;
+    private ChamaMember mMember;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +63,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         mProgressBar = findViewById(R.id.progressBar);
         mIdNumber = findViewById(R.id.id_number);
 
+        mDatabase = FirebaseDatabase.getInstance();
+        mDatabaseReference = mDatabase.getReference(REGISTEREDMEMBER);
         mAuth = FirebaseAuth.getInstance();
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("Member");
 
     }
 
@@ -71,7 +78,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             case R.id.button_register:
                 createUserAccount();
                 break;
-
         }
     }
 
@@ -88,10 +94,10 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         String confirmPassword = mConfirmPassword.getText().toString().trim();
         String phoneNumber = mPhoneNumber.getText().toString().trim();
 
-        charactersAuthenticator(email, firstName, lastName, id, password, confirmPassword, phoneNumber);
+        fieldsValidation(email, firstName, lastName, id, password, confirmPassword, phoneNumber);
     }
 
-    private void charactersAuthenticator
+    private void fieldsValidation
             (String email, String firstName, String lastName, String id, String password, String confirmPassword, String phoneNumber) {
         if (firstName.isEmpty()) {
             mFirstName.setError("First name is Required !");
@@ -152,47 +158,46 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             mConfirmPassword.requestFocus();
             return;
         }
+        mMember = new ChamaMember(
+                firstName,
+                lastName,
+                id,
+                email,
+                password,
+                phoneNumber
+        );
+
+        registerUserDetails(email, password);
+    }
+
+    private void registerUserDetails(String email, String password) {
         mProgressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-
-                            ChamaMember member = new ChamaMember(
-                                    firstName,
-                                    lastName,
-                                    id,
-                                    email,
-                                    phoneNumber
-                            );
-                            mDatabaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(member)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_SHORT)
-                                                .show();
-                                        mProgressBar.setVisibility(View.VISIBLE);
-                                        startActivity(new Intent(getApplicationContext(), LogInActivity.class));
-                                    }else{
-                                        Toast.makeText(RegistrationActivity.this, "Error !" + task.getException().getMessage(),
-                                                Toast.LENGTH_SHORT).show();
-                                        mProgressBar.setVisibility(View.GONE);
-
-                                    }
-                                }
-                            });
-
-                        }else{
-
-                            Toast.makeText(RegistrationActivity.this, "Error !" + task.getException().getMessage(),
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(RegistrationActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-
+                            mProgressBar.setVisibility(View.GONE);
                         }
+
+                        // ...
                     }
                 });
+    }
+
+    private void updateUI(FirebaseUser currentUser) {
+        String key_id = mDatabaseReference.push().getKey();
+        mDatabaseReference.child(key_id).setValue(mMember);
+        startActivity(new Intent(this, LogInActivity.class));
     }
 
 }

@@ -11,15 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mobilefintech16">
-        <activity android:name=".UserProfileActivity"/>
+        <activity android:name=".CodeNumberVerificationActivity"></activity>
+        <activity android:name=".ForgotPasswordActivity" />
+        <activity android:name=".UserProfileActivity" />
         <activity android:name=".LogInActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".RegistrationActivity"/>
+        <activity android:name=".RegistrationActivity" />
     </application>
 
 </manifest>

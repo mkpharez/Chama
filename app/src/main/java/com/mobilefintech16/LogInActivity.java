@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private TextView mPassword;
     private FirebaseAuth mAuth;
     private ProgressBar mProgressBar;
+    private CheckedTextView mRetrievePassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
         mRegisterAccounts = findViewById(R.id.imageButton);
         mRegisterAccounts.setOnClickListener(this);
+
+        mRetrievePassword = findViewById(R.id.forgot_password);
+        mRetrievePassword.setOnClickListener(this);
 
         mAvatar = findViewById(R.id.avatar_removable);
 
@@ -61,6 +66,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.log_in_button:
                 signIn();
+                break;
+            case R.id.forgot_password:
+                forgotPassword();
                 break;
         }
     }
@@ -114,7 +122,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
-    private void registrationActivity() {
-        startActivity(new Intent(this, RegistrationActivity.class));
-    }
+    private void registrationActivity() { startActivity(new Intent(this, RegistrationActivity.class)); }
+
+    private void forgotPassword() { startActivity(new Intent(this,ForgotPasswordActivity.class)); }
 }
