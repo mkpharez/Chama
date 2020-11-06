@@ -13,15 +13,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="190dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Username or Phone"
+        android:hint="Email: e.g abc@gmail.com"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/enter_password"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -38,50 +39,30 @@
         android:id="@+id/enter_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Enter Password"
         android:inputType="textPassword"
-        app:passwordToggleEnabled="true"
-        app:layout_constraintBottom_toTopOf="@+id/log_in_button"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@+id/user_name"
-        app:layout_constraintStart_toStartOf="@+id/user_name" />
+        app:layout_constraintStart_toStartOf="@+id/user_name"
+        app:layout_constraintTop_toBottomOf="@+id/user_name"
+        app:passwordToggleEnabled="true" />
 
     <Button
         android:id="@+id/log_in_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
+        android:layout_marginTop="62dp"
         android:backgroundTint="@android:color/holo_blue_bright"
         android:text="Log In"
+        android:textAllCaps="false"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="@+id/enter_password"
-        app:layout_constraintStart_toStartOf="@+id/enter_password" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        android:src="@drawable/ic_baseline_person_add_alt_1_24"
-        android:tint="@android:color/holo_blue_bright"
-        app:layout_constraintBottom_toBottomOf="@+id/avatar_removable"
-        app:layout_constraintEnd_toEndOf="@+id/user_name"
-        app:layout_constraintStart_toEndOf="@+id/avatar_removable"
-        app:layout_constraintTop_toTopOf="@+id/avatar_removable" />
-
-    <ImageButton
-        android:id="@+id/avatar_removable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/user_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintStart_toStartOf="@+id/enter_password"
+        app:layout_constraintTop_toBottomOf="@+id/enter_password" />
 
     <CheckedTextView
         android:id="@+id/forgot_password"
@@ -90,20 +71,23 @@
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/design_default_color_primary_dark"
         android:clickable="true"
+        android:hint="Use your phone number to reset password"
         android:text="Forgot Password ?"
         android:textColor="@color/black"
-        android:textStyle="italic"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="@+id/log_in_button"
         app:layout_constraintStart_toStartOf="@+id/log_in_button"
         app:layout_constraintTop_toBottomOf="@+id/log_in_button" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar3"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_bright"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:text="Log In with Email and Password"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/user_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

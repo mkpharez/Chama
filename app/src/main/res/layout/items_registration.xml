@@ -6,69 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".RegistrationActivity">
 
+    <Button
+        android:id="@+id/button_register"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@android:color/holo_blue_bright"
+        android:text="Resgister"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textStyle="bold|italic"
+        app:cornerRadius="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/rewrite_password"
+        app:layout_constraintStart_toStartOf="@+id/rewrite_password"
+        app:layout_constraintTop_toBottomOf="@+id/rewrite_password" />
+
     <EditText
         android:id="@+id/last_name"
-        android:layout_width="130dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="last name"
         android:inputType="textPersonName"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/first_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/first_name"
-        app:layout_constraintTop_toTopOf="@+id/first_name" />
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/first_name"
+        app:layout_constraintHorizontal_bias="0.128"
+        app:layout_constraintStart_toStartOf="@+id/first_name"
+        app:layout_constraintTop_toBottomOf="@+id/first_name" />
 
     <EditText
         android:id="@+id/first_name"
-        android:layout_width="130dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="first name"
         android:inputType="textPersonName"
         android:textColor="@color/black"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/icon_person"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/phone_number"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="phone: (+254)700123456"
         android:inputType="phone"
+        android:textAllCaps="false"
         android:textColor="@color/black"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@+id/email_address"
-        app:layout_constraintStart_toEndOf="@+id/icon_phone_number"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
         app:layout_constraintTop_toBottomOf="@+id/email_address" />
 
     <EditText
         android:id="@+id/id_number"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="National ID/Passport no."
         android:inputType="phone"
         android:textColor="@color/black"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@+id/last_name"
-        app:layout_constraintStart_toStartOf="@+id/first_name"
-        app:layout_constraintTop_toBottomOf="@+id/first_name" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/last_name"
+        app:layout_constraintTop_toBottomOf="@+id/last_name" />
 
     <EditText
         android:id="@+id/email_address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="xyz123@gmail.com"
         android:inputType="textEmailAddress"
         android:textColor="@color/black"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@+id/id_number"
         app:layout_constraintStart_toStartOf="@+id/id_number"
         app:layout_constraintTop_toBottomOf="@+id/id_number" />
@@ -77,11 +102,12 @@
         android:id="@+id/new_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="new password"
         android:inputType="textPassword"
         android:textColor="@color/black"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@+id/phone_number"
         app:layout_constraintStart_toEndOf="@+id/icon_password"
         app:layout_constraintTop_toBottomOf="@+id/phone_number"
@@ -91,61 +117,39 @@
         android:id="@+id/rewrite_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="confirm password"
         android:inputType="textPassword"
         android:textColor="@color/black"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@+id/new_password"
         app:layout_constraintStart_toStartOf="@+id/new_password"
         app:layout_constraintTop_toBottomOf="@+id/new_password"
         app:passwordToggleEnabled="true" />
 
-    <Button
-        android:id="@+id/button_register"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:background="@android:color/holo_blue_bright"
-        android:text="Register"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/rewrite_password"
-        app:layout_constraintStart_toEndOf="@+id/login_page"
-        app:layout_constraintTop_toBottomOf="@+id/rewrite_password" />
-
     <CheckedTextView
         android:id="@+id/login_page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         android:backgroundTint="@color/design_default_color_primary_dark"
-        android:text="LogIn ?"
+        android:text="Log In?"
         android:textColor="@color/black"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="@+id/button_register"
-        app:layout_constraintStart_toStartOf="@+id/rewrite_password"
+        app:layout_constraintEnd_toStartOf="@+id/button_register"
         app:layout_constraintTop_toTopOf="@+id/button_register" />
-
-    <ImageView
-        android:id="@+id/icon_phone_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/phone_number"
-        app:layout_constraintStart_toStartOf="@+id/icon_email"
-        app:layout_constraintTop_toTopOf="@+id/phone_number"
-        app:srcCompat="@android:drawable/ic_menu_call"
-        app:tint="@android:color/holo_blue_bright" />
 
     <ImageView
         android:id="@+id/icon_password"
         android:layout_width="29dp"
         android:layout_height="28dp"
         app:layout_constraintBottom_toBottomOf="@+id/new_password"
-        app:layout_constraintStart_toStartOf="@+id/icon_phone_number"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
         app:layout_constraintTop_toTopOf="@+id/new_password"
         app:srcCompat="@android:drawable/ic_lock_idle_lock"
-        app:tint="@android:color/holo_blue_bright" />
+        app:tint="@android:color/background_dark" />
 
     <ImageView
         android:id="@+id/icon_email"
@@ -157,7 +161,7 @@
         app:layout_constraintStart_toStartOf="@+id/icon_person"
         app:layout_constraintTop_toTopOf="@+id/email_address"
         app:srcCompat="@android:drawable/sym_action_email"
-        app:tint="@android:color/holo_blue_bright" />
+        app:tint="@android:color/background_dark" />
 
     <ImageView
         android:id="@+id/icon_person"
@@ -168,7 +172,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/first_name"
         app:srcCompat="@drawable/ic_baseline_person_24"
-        app:tint="@android:color/holo_blue_bright" />
+        app:tint="@android:color/background_dark" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -177,24 +181,49 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_bright"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:logo="@drawable/ic_baseline_account_box_24"
-        app:title="Muungano Chama Accounts"
-        app:titleTextColor="@color/black" />
+        app:layout_constraintBottom_toBottomOf="@+id/id_number"
+        app:layout_constraintEnd_toStartOf="@+id/id_number"
+        app:layout_constraintTop_toTopOf="@+id/id_number"
+        app:srcCompat="@drawable/ic_baseline_perm_identity_24"
+        app:tint="@color/black" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/phone_number"
+        app:layout_constraintStart_toStartOf="@+id/icon_email"
+        app:layout_constraintTop_toTopOf="@+id/phone_number"
+        app:srcCompat="@drawable/ic_baseline_phone_24"
+        app:tint="@color/black" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/rewrite_password"
+        app:layout_constraintEnd_toStartOf="@+id/rewrite_password"
+        app:layout_constraintStart_toStartOf="@+id/icon_password"
+        app:layout_constraintTop_toTopOf="@+id/rewrite_password"
+        app:srcCompat="@android:drawable/ic_lock_idle_lock"
+        app:tint="@color/black" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/last_name"
+        app:layout_constraintEnd_toStartOf="@+id/last_name"
+        app:layout_constraintTop_toTopOf="@+id/last_name"
+        app:srcCompat="@drawable/ic_baseline_person_24"
+        app:tint="@color/black" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

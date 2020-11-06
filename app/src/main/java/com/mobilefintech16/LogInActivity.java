@@ -22,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton mRegisterAccounts;
-    private ImageButton mAvatar;
     private Button mSignIn;
     private TextView mUserName;
     private TextView mPassword;
@@ -33,15 +32,13 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.items_login);
+        setContentView(R.layout.activity_login);
 
-        mRegisterAccounts = findViewById(R.id.imageButton);
+        mRegisterAccounts = findViewById(R.id.new_user);
         mRegisterAccounts.setOnClickListener(this);
 
         mRetrievePassword = findViewById(R.id.forgot_password);
         mRetrievePassword.setOnClickListener(this);
-
-        mAvatar = findViewById(R.id.avatar_removable);
 
         mSignIn = findViewById(R.id.log_in_button);
         mSignIn.setOnClickListener(this);
@@ -61,7 +58,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.imageButton:
+            case R.id.new_user:
                 registrationActivity();
                 break;
             case R.id.log_in_button:
@@ -108,16 +105,13 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
     private void signInWithFirebase(String userName, String password) {
         mProgressBar.setVisibility(View.VISIBLE);
-        mAuth.signInWithEmailAndPassword(userName,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    startActivity(new Intent(LogInActivity.this, UserProfileActivity.class));
-                }else{
-                    Toast.makeText(LogInActivity.this, "Error !" + task.getException().getMessage(),
-                            Toast.LENGTH_SHORT).show();
-                    mProgressBar.setVisibility(View.GONE);
-                }
+        mAuth.signInWithEmailAndPassword(userName,password).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                startActivity(new Intent(LogInActivity.this, UserProfileActivity.class));
+            }else{
+                Toast.makeText(LogInActivity.this, "Error !" + task.getException().getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                mProgressBar.setVisibility(View.GONE);
             }
         });
     }

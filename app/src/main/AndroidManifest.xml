@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mobilefintech16">
-        <activity android:name=".CodeNumberVerificationActivity"></activity>
+        <activity android:name=".EditPasswordLoggedInActivity"></activity>
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".UserProfileActivity" />
         <activity android:name=".LogInActivity">
