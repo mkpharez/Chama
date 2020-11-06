@@ -159,6 +159,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                     public void onVerificationFailed(@NonNull FirebaseException e) {
                         Toast.makeText(ForgotPasswordActivity.this, "Cannot Verify Account" +e.getMessage(), Toast.LENGTH_SHORT)
                                 .show();
+                        mProgressBar.setVisibility(View.GONE);
 
                     }
                 });
