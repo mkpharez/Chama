@@ -1,8 +1,5 @@
 package com.mobilefintech16;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,18 +12,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.rilixtech.widget.countrycodepicker.CountryCodePicker;
 
 import java.util.concurrent.TimeUnit;
@@ -93,10 +85,9 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
             }
         } else {
             mSendPhoneVerification.setEnabled(false);
-            String userOTPCode = mCodeNum.getText().toString();
-            if(!userOTPCode.isEmpty() && userOTPCode.length() == CODE_VERIFY_CONSTANT){
-                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId,userOTPCode);
-                verifyAuthentication(credential);
+            String userEnteredCode = mCodeNum.getText().toString();
+            if(!userEnteredCode.isEmpty() && userEnteredCode.length() == CODE_VERIFY_CONSTANT){
+                justGetThatSmsCode(userEnteredCode);
             }else{
                 mCodeNum.setError("Must Enter Code Sent To Your Phone Number!!");
                 mSendPhoneVerification.setEnabled(true);
@@ -152,7 +143,11 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
 
                     @Override
                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-
+                        String smsCode = phoneAuthCredential.getSmsCode();
+                        if(smsCode != null){
+                            mProgressBar.setVisibility(View.VISIBLE);
+                            justGetThatSmsCode(smsCode);
+                        }
                     }
 
                     @Override
@@ -164,5 +159,11 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                     }
                 });
     }
+
+    private void justGetThatSmsCode(String smsCodeVerify) {
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId,smsCodeVerify);
+        verifyAuthentication(credential);
+    }
+
     private void backToLogIn() { startActivity( new Intent(this, LogInActivity.class)); }
 }
